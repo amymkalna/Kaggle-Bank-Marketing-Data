@@ -14,22 +14,24 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 1.Introduction:
 
-This document mainly utilizes the Data Science technique of "Data Classification" to examine a dataset related with direct marketing campaigns (telemarketing phone calls) of a Portuguese banking institution. The objective of the classification is to predict if the client will subscribe to a Term Deposit. "Data Classification" is the use of Machine Learning techniques to organize datasets into related sub-populations, not previous specified in the dataset. This can uncover hidden characteristics within data, and identify hidden categories that new data belongs within. The Data Science techniques used within this research effort are Exploratory Data Analysis, Data Classification basis Random Forest and K-Nearest Neighbor.
+This project applies machine learning techniques that go beyond standard linear regression. I had the opportunity to use a publicly available dataset to solve the problem of my choice. I sifted through the datasets available on Kaggle and chose a finance/bank related dataset. I work at a bank so I was geared toward selecting a topic that's relevant to the banking business.
 
-The data set can be downloaded from Kaggle (https://www.kaggle.com/henriqueyamahata/bank-marketing). It is consisted of 41,188 customer data on direct marketing campaigns (phone calls) of a Portuguese banking institution, with variables below:
+The goal of the project is to answer the following question:
+What kind of behaviors do potential customers exhibit that result in them more likely to subscribe to a term deposit? 
 
+The business problem is to devise a target marketing strategy for the bank based on the behavioral data collected.
+The dataset is included in one of the submission files and can be downloaded from Kaggle (https://www.kaggle.com/henriqueyamahata/bank-marketing).
+
+The Dataset: 
+It contains 41,188 customer data on direct marketing campaigns (phone calls) of a Portuguese banking institution. 
+
+It has the following variables:
 Client: age, job, marital, education, default status, housing, and loan
-
 Campaign: last contact type, last contact month of year, last contact day of the week, and last contact duration
-
 Others: number of contacts performed in current campaign, number of days that passed by after the client was last contacted, number of contacts performed before this campaign, outcome of previous campaign, and whether a client has subscribed a term deposit
 
-
-The business question we are trying to answer is:
-
-Potential customer exhibiting what kind of behaviors are more likely to subscribe to a term deposit?
-Our business problem is to devise marketing strategy for the bank based on the behavioural data collected. 
-
+Key Steps Performed:
+I first used Data Classification to examine the set related with direct marketing campaigns of a Portuguese banking institution. The objective of the classification is to predict if the client will subscribe to a Term Deposit. Data Classification is the use of machine learning techniques to organize datasets into related sub-populations, not previous specified in the dataset. This can uncover hidden characteristics within data, and identify hidden categories that new data belongs within. The rest of the key steps that were performed used the data science techniques of Exploratory Data Analysis, Data Classification basis Random Forest and K-Nearest Neighbor.
 
 </newpage>
 
@@ -190,6 +192,7 @@ ggplot(data = tab, aes(x = education, y = perc, fill = y)) +
 theme(axis.text.x=element_text(angle=90,hjust=1)) +
   xlab("Education")+ylab("Percent")
 ```
+
 **We can see that customers who sign up for bank deposits, proportionally, have achieved a higher level of education, than those who didn't sign up.**
 
 <br />
@@ -201,6 +204,7 @@ ggplot(data = tab, aes(x = month, y = perc, fill = y)) +
   geom_bar(stat = 'identity', position = 'dodge', alpha = 2/3) +
   xlab("Month")+ylab("Percent")
 ```
+
 **The month of May is when the highest number of calls were placed for marketing deposit. And the following months of April, September, and October is the time when a higher proportion of people subscribed for term deposits.**
 
 
@@ -214,6 +218,7 @@ ggplot(data = tab, aes(x = job, y = perc, fill = y)) +
 theme(axis.text.x=element_text(angle=90,hjust=1)) +
   xlab("Job")+ylab("Percent")
 ```
+
 **We see there are higher proportions for customers signing up for the term deposits who have the jobs of admin, retired, and students.**
 
 
@@ -226,6 +231,7 @@ ggplot(data = tab, aes(x = default, y = perc, fill = y)) +
   geom_bar(stat = 'identity', position = 'dodge', alpha = 2/3) +
   xlab("Default")+ylab("Percent")
 ```
+
 **The data shows that people who aren't in default are a higher proportion of people who have subscribed for bank deposits.**
 
 
@@ -239,6 +245,7 @@ ggplot(data = tab, aes(x = housing, y = perc, fill = y)) +
   geom_bar(stat = 'identity', position = 'dodge', alpha = 2/3) +
   xlab("Housing")+ylab("Percent")
 ```
+
 **We see that a higher proportion of people who have subscribed for bank deposit are home owners versus ones that don't own their own houses.**
 
 
@@ -252,6 +259,7 @@ ggplot(data = tab, aes(x = loan, y = perc, fill = y)) +
   geom_bar(stat = 'identity', position = 'dodge', alpha = 2/3) +
   xlab("Loan")+ylab("Percent")
 ```
+
 **We see the proportion of people who have subscribed and not subscribed to a term deposit is the same for categories of the Loan.**
 
 
@@ -265,6 +273,7 @@ ggplot(data = tab, aes(x = contact, y = perc, fill = y)) +
   geom_bar(stat = 'identity', position = 'dodge', alpha = 2/3) +
   xlab("Contact")+ylab("Percent")
 ```
+
 **Customers who have cell phones, and therefore a more direct way of communicating, signed up for term deposits more than those who only had a landline telephone.**
 
 
@@ -278,6 +287,7 @@ ggplot(data = tab, aes(x = day_of_week, y = perc, fill = y)) +
   geom_bar(stat = 'identity', position = 'dodge', alpha = 2/3) +
   xlab("Day_of_week")+ylab("Percent")
 ```
+
 **Campaigns that were performed midweek, on Tuesdays, Wednesdays, and Thursdays had a slightly higher proportion of people who subscribed for bank deposit..**
 
 <br />
@@ -289,6 +299,7 @@ ggplot(data = tab, aes(x = poutcome, y = perc, fill = y)) +
   geom_bar(stat = 'identity', position = 'dodge', alpha = 2/3) +
   xlab("Outcome of previous marketing campaign")+ylab("Percent")
 ```
+
 **Potential customers who successfully connected and responded in previous campaigns had a higher proportion of signing up for the term deposit.**
  
 
@@ -298,12 +309,14 @@ ggplot(data = tab, aes(x = poutcome, y = perc, fill = y)) +
 ```{r, warning=FALSE, message=FALSE}
 ggplot(data.df, aes(factor(y), duration)) + geom_boxplot(aes(fill = factor(y)))
 ```
+
 **The longer the phone conversation the greater the conversion rate is for the potential customer to sign up for the term deposit. There are higher median and quartile ranges.**
 
 <br />
 ```{r, warning=FALSE, message=FALSE}
 ggplot(data.df, aes(factor(y), age)) + geom_boxplot(aes(fill = factor(y)))
 ```
+
 **The age range for successful conversion has a slightly lower median, but higher quartile ranges.**
 
 <br />
@@ -320,6 +333,7 @@ ggplot(data.df, aes(factor(y), age)) + geom_boxplot(aes(fill = factor(y)))
 df_cor <- select_if(data.df, is.numeric) %>% cor()
 corrplot(df_cor, method = "number")
 ```
+
 **We see our target variable has a high positive correlation with duration and if the customer was involved and connected in a previous campaign, while there's negative correlation with Nr.employed (number of employees), pdays (number of days from last contact), Euribor3m (Euribor 3 month rate) and emp.var.rate (employee variation rate).**
 
 ***
@@ -359,7 +373,8 @@ dim(dfTrain)
 ```{r, warning=FALSE, message=FALSE}
 dim(dfTest)
 ```
-The code and output above show that the trainData dataset has 8929 rows and 17 columns and the testData dataset gas 2233 rows and 17 columns. The number of columns remains the same because the dataset was split vertically.
+
+**The code and output above show that the trainData dataset has 8929 rows and 17 columns and the testData dataset gas 2233 rows and 17 columns. The number of columns remains the same because the dataset was split vertically.**
 
 <br />
 
@@ -432,6 +447,7 @@ Accuracy of the model is the correctly classified positive and negative cases di
 ```{r, warning=FALSE, message=FALSE}
 varImpPlot(model_rf)
 ```
+
 **By setting the importance argument on, we obtained the variable importance plot as above using varImpPlot() function and we can see that duration is highly significant in our data set.** 
 
 <br />
@@ -444,7 +460,7 @@ legend("right", legend=c("OOB Error", "FPR", "FNR"),
 ```
 
 
-In the above plot, we can see the change of error with increasing number of trees. The False Negative Rate is higher compared to other error rate and False Positive Rate is lowest. The error rate starts dropping for at ntree~ 20. This says that our model is predicting 'Yes' cases more accurately than 'No' cases which can also be confirmed by the confusion matrix above.
+**In the above plot, we can see the change of error with increasing number of trees. The False Negative Rate is higher compared to other error rate and False Positive Rate is lowest. The error rate starts dropping for at ntree~ 20. This says that our model is predicting 'Yes' cases more accurately than 'No' cases which can also be confirmed by the confusion matrix above.**
 
 <br />
 <br />

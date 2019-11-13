@@ -3,21 +3,24 @@
 
 ## 1.Introduction:
 
-# This document mainly utilizes the Data Science technique of "Data Classification" to examine a dataset related with direct marketing campaigns (telemarketing phone calls) of a Portuguese banking institution. The objective of the classification is to predict if the client will subscribe to a Term Deposit. "Data Classification" is the use of Machine Learning techniques to organize datasets into related sub-populations, not previous specified in the dataset. This can uncover hidden characteristics within data, and identify hidden categories that new data belongs within. The Data Science techniques used within this research effort are Exploratory Data Analysis, Data Classification basis Random Forest and K-Nearest Neighbor.
+# This project applies machine learning techniques that go beyond standard linear regression. I had the opportunity to use a publicly available dataset to solve the problem of my choice. I sifted through the datasets available on Kaggle and chose a finance/bank related dataset. I work at a bank so I was geared toward selecting a topic that's relevant to the banking business.
 # 
-# The data set can be downloaded from Kaggle (https://www.kaggle.com/henriqueyamahata/bank-marketing). It is consisted of 41,188 customer data on direct marketing campaigns (phone calls) of a Portuguese banking institution, with variables below:
-#   
-#   Client: age, job, marital, education, default status, housing, and loan
+# The goal of the project is to answer the following question:
+# What kind of behaviors do potential customers exhibit that result in them more likely to subscribe to a term deposit? 
 # 
+# The business problem is to devise a target marketing strategy for the bank based on the behavioral data collected.
+# The dataset is included in one of the submission files and can be downloaded from Kaggle (https://www.kaggle.com/henriqueyamahata/bank-marketing).
+# 
+# The Dataset: 
+# It contains 41,188 customer data on direct marketing campaigns (phone calls) of a Portuguese banking institution. 
+# 
+# It has the following variables:
+# Client: age, job, marital, education, default status, housing, and loan
 # Campaign: last contact type, last contact month of year, last contact day of the week, and last contact duration
-# 
 # Others: number of contacts performed in current campaign, number of days that passed by after the client was last contacted, number of contacts performed before this campaign, outcome of previous campaign, and whether a client has subscribed a term deposit
 # 
-# 
-# The business question we are trying to answer is:
-#   
-#   Potential customer exhibiting what kind of behaviors are more likely to subscribe to a term deposit?
-#   Our business problem is to devise marketing strategy for the bank based on the behavioural data collected. 
+# Key Steps Performed:
+# I first used Data Classification to examine the set related with direct marketing campaigns of a Portuguese banking institution. The objective of the classification is to predict if the client will subscribe to a Term Deposit. Data Classification is the use of machine learning techniques to organize datasets into related sub-populations, not previous specified in the dataset. This can uncover hidden characteristics within data, and identify hidden categories that new data belongs within. The rest of the key steps that were performed used the data science techniques of Exploratory Data Analysis, Data Classification basis Random Forest and K-Nearest Neighbor.
 
 
 
